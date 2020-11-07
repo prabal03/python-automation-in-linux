@@ -304,33 +304,46 @@ gpgcheck=0""")
 
              print("\t\t\t\tWELCOME TO WORLD OF AWS")
              print("""
-                                    A) Press 1 For Linux SERVER
-                                    B) Press 2 For RHEL8 SERVER
-                                    C) Press 3 For SUSE SERVER
-                                    D) Press 4 FOR Ubuntu SERVER
+                                    A) Press 1 For KEY PAIR
+                                    B) Press 2 For SECURITY GROUP
+                                    C) Press 3 For Linux SERVER
+                                    D) Press 4 FOR RHEL8 SERVER
                                     E) Press 5 For Window SERVER
                                     F) Press 6 For Window SERVER with Container
                                     G) Press 7 For Cloud Front Service
 				    F) Press 8 For S3 Service 
-				    H) Press 9 For EBS Volume
-                                    I) Press 10 Back """)
-             y=int(input("ENTER YOUR CHOICE : "))
-             if y==1:
-                os.system("aws ec2 run-instances --image-id  ami-0e306788ff2473ccb  --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn")
-                print("\n\-------------------Instance has been Launched---------------")
-             elif y==3:
-                os.system("aws configure;aws ec2 run-instances --image-id ami-0d0522ed4db1debd6  --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn")
-             elif y==4:
-                os.system("aws configure;aws ec2 run-instances --image-id  ami-0cda377a1b884a1bc  --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn")
-                print("\n\-------------------Your Ubuntu Instance has been launched---------------")
-             elif y==5:
-                os.system("aws configure;aws ec2 run-instances --image-id  ami-0b2f6494ff0b07a0e  --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn")
-                print("\n\-------------------Your Window Server has been launched---------------")
-             elif y==6:
-                os.system("aws configure;aws ec2 run-instances --image-id  ami-0295b81b270caa9d2 --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn")
-                print("\n\-------------------Your Window Server With Containers has been launched---------------")
-             elif y==2:
-                os.system("aws configure;aws ec2 run-instances --image-id ami-052c08d70def0ac62  --count 1 --instance-type t2.micro --key-name  Mykeyn  --security-groups MySecurityGroupn;tput setaf 3;echo '---------------RHEL8 MACHINE HAS BEEN LAUNCHED --------'")
+                                    H) Press 9 For EBS Service
+				    I) Press 10 Back""")
+                y=int(input("ENTER YOUR CHOICE : "))
+                os.system("tput setaf 6")
+                if y==1:
+                    KEYNAME=input("\n ENTER KEY PAIR NAME : ")
+                    os.system(f"aws ec2 create-key-pair --key-name {KEYNAME}")
+                    print("\n\-------------------KEY PAIR has been Created---------------")
+                elif y==3:
+                    KEYNAME1=input("\n ENTER KEY PAIR NAME WHICH YOU HAVE CREATED : ")
+                    SG1=input("\n ENTER SECURITY GROUP NAME : ")
+                    os.system(f"aws ec2 run-instances --image-id ami-0e306788ff2473ccb  --count 1 --instance-type t2.micro --key-name  {KEYNAME1}  --security-groups {SG1}")
+                    print("\n\------------------Linux Server Has Been Launched")
+                elif y==4:
+                    KEYNAME2=input("\n ENTER KEY PAIR NAME WHICH YOU HAVE CREATED : ")
+                    SG2=input("\n ENTER SECURITY GROUP NAME : ")
+                    os.system(f"aws ec2 run-instances --image-id  ami-052c08d70def0ac62  --count 1 --instance-type t2.micro --key-name  {KEYNAME2}  --security-groups {SG2}")
+                    print("\n\-------------------Your RHEL8 Instance has been launched---------------")
+                elif y==5:
+                    KEYNAME3=input("\n ENTER KEY PAIR NAME WHICH YOU HAVE CREATED : ")
+                    SG3=input("\n ENTER SECURITY GROUP NAME : ")
+                    os.system(f"aws ec2 run-instances --image-id  ami-0b2f6494ff0b07a0e  --count 1 --instance-type t2.micro --key-name  {KEYNAME3}  --security-groups {SG3}")
+                    print("\n\-------------------Your Window Server has been launched---------------")
+                elif y==6:
+                    KEYNAME4=input("\n ENTER KEY PAIR NAME WHICH YOU HAVE CREATED : ")
+                    SG4=input("\n ENTER SECURITY GROUP NAME : ")
+                    os.system(f"aws ec2 run-instances --image-id  ami-0295b81b270caa9d2 --count 1 --instance-type t2.micro --key-name  {KEYNAME4}  --security-groups {SG4}")
+                    print("\n\-------------------Your Window Server With Containers has been launched---------------")
+                elif y==2:
+                    SG=input("\n ENTER SECURITY GROUP NAME : ")
+                    DESC=input("\n PLEASE PROVIDE THE DESCRIPTION : ")
+                    os.system(f"aws ec2 create-security-group --group-name {SG} --description {'DESC'}")
              elif y==7:
                 origin_domain_name =input("Give Your S3 Bucket Name : ")
                 os.system(f"aws cloudfront create-distribution --origin-domain-name {origin_domain_name}.s3.amazonaws.com")
