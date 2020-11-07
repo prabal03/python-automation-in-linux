@@ -3,7 +3,7 @@
 TEAM MEMBERS:-
 
 a) Prabal Agrawal
-b) Devendra bhadauria 
+b) Devendra Bhadauria 
 c) Saloni Jain
 d) vyasakh M
 
