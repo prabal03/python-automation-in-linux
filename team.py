@@ -351,7 +351,7 @@ gpgcheck=0""")
                     os.system(f"aws cloudfront create-distribution --origin-domain-name {origin_domain_name}.s3.amazonaws.com")
                 elif y==8:
                     bucket_name =input("Enter Your Bucket Name : ")
-                    os.system("aws s3 mb s3://{bucket_name}")
+                    os.system(f"aws s3 mb s3://{bucket_name}")
                 elif y==9:
                       def  ebs():
                          os.system("clear;aws configure")
